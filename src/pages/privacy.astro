@@ -1,58 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site } from '../config';
+
+export const prerender = true;
 ---
-<Layout
-  title={`Privacy Policy — ${site.name}`}
-  description="How Nemi Digital Agency collects, uses and protects your personal information."
->
-  <section class="py-16">
-    <article class="container-narrow max-w-3xl prose prose-slate">
+<Layout title={`Privacy — ${site.name}`} description="How we collect and protect your personal information.">
+  <section class="pt-36 pb-24 relative">
+    <div aria-hidden="true" class="absolute inset-0 -z-10 overflow-hidden">
+      <div class="blob h-[30rem] w-[30rem] bg-violet-600/20" style="top:-20%;right:-10%"></div>
+    </div>
+    <article class="container-narrow max-w-3xl">
       <span class="eyebrow">Legal</span>
-      <h1 class="heading mt-3">Privacy Policy</h1>
-      <p class="text-sm text-ink-500">Last updated: July 2026</p>
+      <h1 class="heading mt-5">Privacy Policy</h1>
+      <p class="text-sm text-white/40 font-mono mt-4">Last updated: July 2026</p>
 
-      <div class="mt-8 space-y-6 text-ink-700 leading-relaxed text-[15px]">
-        <h2 class="text-xl font-bold mt-8">1. Who we are</h2>
-        <p>{site.name} ("we", "us", "our") is a digital design & development agency based in Bundelkhand, Uttar Pradesh, India. This policy explains how we collect and use information when you visit our website or contact us.</p>
-
-        <h2 class="text-xl font-bold mt-8">2. Information we collect</h2>
-        <ul class="list-disc pl-6 space-y-2">
-          <li><strong>Information you give us:</strong> name, email, company and message when you submit the contact form.</li>
-          <li><strong>Automatically collected information:</strong> IP address, browser type, referring pages, and pages visited — via standard server logs and analytics (if enabled).</li>
-        </ul>
-
-        <h2 class="text-xl font-bold mt-8">3. How we use it</h2>
-        <ul class="list-disc pl-6 space-y-2">
-          <li>To reply to your inquiries and deliver the services you requested.</li>
-          <li>To improve the website (debugging, performance, content relevance).</li>
-          <li>To send occasional updates about our work, only if you opt in.</li>
-        </ul>
-        <p>We never sell your data. We never share it with third parties for marketing.</p>
-
-        <h2 class="text-xl font-bold mt-8">4. Services we use</h2>
-        <ul class="list-disc pl-6 space-y-2">
-          <li><strong>Netlify:</strong> hosting and form processing. See <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Netlify's privacy policy</a>.</li>
-          <li><strong>Resend:</strong> transactional email delivery for contact form notifications. See <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">Resend's privacy policy</a>.</li>
-          <li><strong>Google Fonts:</strong> loaded via Google's CDN; Google may log the request.</li>
-        </ul>
-
-        <h2 class="text-xl font-bold mt-8">5. Data retention</h2>
-        <p>Contact form submissions are retained for up to 24 months so we can reference past conversations, then deleted or anonymized upon request.</p>
-
-        <h2 class="text-xl font-bold mt-8">6. Your rights</h2>
-        <p>You may request access to, correction of, or deletion of your personal data at any time by emailing <a href="mailto:hello@nemidigital.agency" class="text-brand-600 hover:underline">hello@nemidigital.agency</a>. We respond within 7 days.</p>
-
-        <h2 class="text-xl font-bold mt-8">7. Cookies</h2>
-        <p>This site does not use tracking cookies. Netlify and our host may set technical cookies required for security and form submission.</p>
-
-        <h2 class="text-xl font-bold mt-8">8. Contact</h2>
-        <p>Questions about this policy? Email us at <a href={`mailto:${site.email}`} class="text-brand-600 hover:underline">{site.email}</a>.</p>
+      <div class="mt-12 space-y-8 text-white/70 leading-relaxed text-[15px]">
+        <div class="glass p-8">
+          <h2 class="text-xl font-bold text-white mb-3 font-display">1. Who we are</h2>
+          <p>{site.name} ("we") is a digital design & development studio based in Bundelkhand, Uttar Pradesh, India. This policy explains what data we collect when you visit our website or contact us.</p>
+        </div>
+        <div class="glass p-8">
+          <h2 class="text-xl font-bold text-white mb-3 font-display">2. Information we collect</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>What you submit: name, email, company and message via the contact form.</li>
+            <li>Automatic: IP address, browser type, referring pages, via standard server logs.</li>
+          </ul>
+        </div>
+        <div class="glass p-8">
+          <h2 class="text-xl font-bold text-white mb-3 font-display">3. How we use it</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Reply to your inquiry and deliver the services you requested.</li>
+            <li>Improve the website (debugging, performance).</li>
+          </ul>
+          <p class="mt-3 text-fuchsia-300">We never sell your data. We never share it with third parties for marketing.</p>
+        </div>
+        <div class="glass p-8">
+          <h2 class="text-xl font-bold text-white mb-3 font-display">4. Services we use</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>Netlify</strong> — hosting & form processing.</li>
+            <li><strong>Resend</strong> — transactional email (only enabled if configured).</li>
+            <li><strong>Google Fonts</strong> — loaded via Google CDN.</li>
+          </ul>
+        </div>
+        <div class="glass p-8">
+          <h2 class="text-xl font-bold text-white mb-3 font-display">5. Your rights</h2>
+          <p>You may request access, correction or deletion at any time: <a href={`mailto:${site.email}`} class="text-fuchsia-400 hover:underline">{site.email}</a>. We reply within 7 days.</p>
+        </div>
       </div>
     </article>
   </section>
 </Layout>
-
-<style>
-  .prose h2 { margin-top: 2.5rem; }
-</style>

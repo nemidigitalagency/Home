@@ -1,14 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
 ---
-<Layout title="Page not found — Nemi Digital Agency" description="The page you're looking for doesn't exist.">
-  <section class="section text-center">
-    <div class="container-narrow max-w-xl">
-      <p class="text-7xl sm:text-8xl font-extrabold font-display text-brand-600">404</p>
-      <h1 class="heading mt-4">This page got lost in the build.</h1>
-      <p class="subheading mx-auto">The page you're looking for doesn't exist or has moved. Let's get you back on track.</p>
-      <div class="mt-8 flex gap-3 justify-center">
-        <a href="/" class="btn-primary">Go home</a>
+<Layout title="404 — Nemi Digital" description="Page not found.">
+  <section class="min-h-screen flex items-center relative overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-0 -z-10 overflow-hidden">
+      <div class="blob h-[40rem] w-[40rem] bg-fuchsia-600/30" style="top:-20%;left:-10%"></div>
+      <div class="blob h-[30rem] w-[30rem] bg-cyan-500/20" style="bottom:-20%;right:-10%"></div>
+    </div>
+    <div class="container-narrow text-center">
+      <p class="font-mono text-xs uppercase tracking-[0.3em] text-fuchsia-400 mb-6">Error · 404</p>
+      <h1 class="heading-xl grad-text">Lost in space.</h1>
+      <p class="subheading mx-auto mt-6">The page you're looking for doesn't exist or has moved. Let's get you back.</p>
+      <div class="mt-10 flex gap-3 justify-center">
+        <a href="/" class="btn-primary">← Go home</a>
         <a href="/contact" class="btn-ghost">Contact us</a>
       </div>
     </div>

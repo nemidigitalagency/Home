@@ -1,53 +1,19 @@
 ---
-const testimonials = [
-  {
-    quote: "Nemi rebuilt our jewellery site from scratch in three weeks. The daily email to our dealers alone paid for the project in the first month.",
-    name: 'Bundelkhand Jewellery',
-    role: 'Founder',
-    initials: 'BJ',
-    bg: 'bg-amber-500',
-  },
-  {
-    quote: "We went from a Wix site that didn't rank to page 1 on Google for our top keywords. Real revenue, real fast.",
-    name: 'Kanpur Dental Clinic',
-    role: 'Owner',
-    initials: 'KD',
-    bg: 'bg-sky-500',
-  },
-  {
-    quote: "Working with Nemi feels like having an in-house tech team. They answer at 10pm and ship on Saturdays. Exactly what a startup needs.",
-    name: 'LogiSaaS',
-    role: 'CEO',
-    initials: 'LS',
-    bg: 'bg-emerald-500',
-  },
-];
+import TestimonialsCarousel from './TestimonialsCarousel';
 ---
-<section id="testimonials" class="section bg-ink-50/60 border-y border-ink-100">
+<section id="testimonials" class="section relative">
   <div class="container-narrow">
-    <div class="max-w-2xl">
-      <span class="eyebrow">What clients say</span>
-      <h2 class="heading mt-3">Kind words from folks we've worked with.</h2>
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-4 mb-5">
+          <span class="section-num">05 /</span>
+          <span class="eyebrow">Testimonials</span>
+        </div>
+        <h2 class="heading">Clients say <span class="grad-text">nice things</span>.</h2>
+      </div>
+      <div class="testi-pagination flex gap-2"></div>
     </div>
 
-    <div class="mt-12 grid gap-6 md:grid-cols-3">
-      {testimonials.map(t => (
-        <figure class="card flex flex-col">
-          <div class="flex gap-0.5 text-accent-500 mb-4">
-            {Array.from({ length: 5 }).map(() => (
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            ))}
-          </div>
-          <blockquote class="text-ink-700 leading-relaxed text-sm flex-1">"{t.quote}"</blockquote>
-          <figcaption class="mt-6 flex items-center gap-3">
-            <span class={`h-10 w-10 rounded-full ${t.bg} text-white flex items-center justify-center font-bold text-sm`}>{t.initials}</span>
-            <div>
-              <p class="font-semibold text-ink-900 text-sm">{t.name}</p>
-              <p class="text-xs text-ink-500">{t.role}</p>
-            </div>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
+    <TestimonialsCarousel client:only="react" />
   </div>
 </section>

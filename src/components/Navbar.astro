@@ -1,32 +1,84 @@
 ---
 const links = [
-  { href: '/#services', label: 'Services' },
   { href: '/#work', label: 'Work' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#process', label: 'Process' },
   { href: '/#about', label: 'About' },
-  { href: '/#testimonials', label: 'Testimonials' },
   { href: '/contact', label: 'Contact' },
 ];
-const pathname = Astro.url.pathname;
 ---
-<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-ink-100">
-  <nav class="container-narrow flex items-center justify-between h-16">
-    <a href="/" class="flex items-center gap-2 font-display font-extrabold text-lg">
-      <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">N</span>
-      <span>Nemi <span class="text-brand-600">Digital</span></span>
+<header class="fixed top-0 inset-x-0 z-40 transition-all duration-500 border-b border-transparent">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent pointer-events-none"></div>
+  <nav class="container-narrow relative flex items-center justify-between h-20">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2.5 group" data-cursor-hover>
+      <span class="relative inline-flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden">
+        <span class="absolute inset-0 bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500"></span>
+        <span class="absolute inset-0 bg-gradient-to-tr from-cyan-400/30 to-transparent"></span>
+        <span class="relative font-display font-extrabold text-white text-lg">N</span>
+      </span>
+      <div class="leading-none">
+        <p class="font-display font-bold text-white text-base tracking-tight">Nemi <span class="text-fuchsia-400">Digital</span></p>
+        <p class="text-[10px] uppercase tracking-[0.25em] text-white/40 font-mono mt-0.5">agency · est. 2023</p>
+      </div>
     </a>
 
-    <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-700">
-      {links.map(l => (
-        <li>
-          <a href={l.href} class:list={['hover:text-brand-600 transition',
-            pathname === l.href && 'text-brand-700']}>{l.label}</a>
+    <!-- Desktop nav -->
+    <ul class="hidden lg:flex items-center gap-1 text-sm font-medium text-white/70">
+      {links.map((l, i) => (
+        <li class="overflow-hidden">
+          <a href={l.href} data-cursor-hover class="group relative inline-flex px-4 py-2 hover:text-white transition-colors">
+            <span class="mr-2 text-[10px] text-white/30 font-mono">0{i+1}</span>
+            {l.label}
+            <span class="absolute bottom-1 left-4 right-4 h-px bg-gradient-to-r from-fuchsia-400 to-cyan-400 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+          </a>
         </li>
       ))}
     </ul>
 
-    <a href="/contact" class="btn-primary hidden sm:inline-flex">Start a project →</a>
-
-    <!-- Mobile menu toggle (no JS needed for simple anchor nav; we'll just leave a CTA) -->
-    <a href="/contact" class="btn-primary sm:hidden">Start</a>
+    <div class="flex items-center gap-3">
+      <a href="/contact" data-cursor-hover class="btn-primary hidden sm:inline-flex !py-2.5 !px-5 !text-xs">
+        Start a project
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <button id="menu-toggle" aria-label="Menu" data-cursor-hover class="lg:hidden h-10 w-10 inline-flex flex-col items-center justify-center gap-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md">
+        <span class="w-4 h-px bg-white transition-all"></span>
+        <span class="w-4 h-px bg-white transition-all"></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 z-30 bg-[var(--bg)]/95 backdrop-blur-2xl translate-x-full transition-transform duration-500">
+    <div class="container-narrow pt-28">
+      <ul class="space-y-1 stagger-children">
+        {links.map((l, i) => (
+          <li>
+            <a href={l.href} class="mobile-link group flex items-baseline justify-between border-b border-white/10 py-5 text-3xl font-display font-bold text-white/80 hover:text-white">
+              <span>{l.label}</span>
+              <span class="text-xs text-white/40 font-mono">0{i+1}</span>
+            </a>
+          </li>
+        ))}
+        <li class="pt-6"><a href="/contact" class="btn-primary w-full">Start a project →</a></li>
+      </ul>
+    </div>
+  </div>
 </header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    let open = false;
+    toggle.addEventListener('click', () => {
+      open = !open;
+      menu.classList.toggle('translate-x-full', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+      const bars = toggle.querySelectorAll('span');
+      if (open) { bars[0].style.transform = 'rotate(45deg) translate(4px,4px)'; bars[1].style.transform = 'rotate(-45deg)'; }
+      else { bars[0].style.transform = ''; bars[1].style.transform = ''; }
+    });
+    menu.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => toggle.click()));
+  }
+</script>

@@ -3,17 +3,39 @@ import { site } from '../config';
 ---
 <section class="section">
   <div class="container-narrow">
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-brand-700 to-purple-800 px-6 sm:px-14 py-16 sm:py-20 text-white text-center shadow-soft">
-      <div aria-hidden="true" class="absolute inset-0 -z-0 opacity-20">
-        <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/30 blur-3xl"></div>
-        <div class="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-accent-500/40 blur-3xl"></div>
+    <div class="relative overflow-hidden rounded-[2rem] border border-white/10 p-10 md:p-20 text-center">
+      <!-- Animated gradient background -->
+      <div aria-hidden="true" class="absolute inset-0 -z-10">
+        <div class="absolute inset-0 bg-gradient-to-br from-violet-700 via-fuchsia-600 to-pink-600 cta-bg"></div>
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-cyan-400/40 blur-3xl cta-blob-1"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-amber-400/30 blur-3xl cta-blob-2"></div>
+        <div class="absolute inset-0 bg-grid-faint [background-size:40px_40px] opacity-20"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(7,7,12,0.5)_100%)]"></div>
       </div>
-      <h2 class="relative text-3xl sm:text-5xl font-extrabold font-display leading-tight">Have a project in mind? Let's build it.</h2>
-      <p class="relative mt-5 text-brand-100 max-w-xl mx-auto">Tell us what you're building. We reply within 24 hours with next steps — no sales pitch, just a real conversation.</p>
-      <div class="relative mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/contact" class="inline-flex items-center justify-center gap-2 rounded-full bg-white text-brand-700 px-6 py-3 text-sm font-semibold hover:bg-brand-50 transition shadow-lg">Start a project →</a>
-        <a href={`mailto:${site.email}`} class="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 border border-white/30 text-white px-6 py-3 text-sm font-semibold hover:bg-white/20 transition">{site.email}</a>
+
+      <div class="relative z-10 max-w-3xl mx-auto cta-content">
+        <div class="eyebrow mb-6 !text-fuchsia-200 justify-center">Let's build</div>
+        <h2 class="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.02]">
+          Have a project in mind?<br/>
+          <span class="grad-text">Let's make it iconic.</span>
+        </h2>
+        <p class="mt-6 text-white/70 text-lg max-w-xl mx-auto">
+          Tell us what you're building. We reply within 24 hours with next steps — no sales deck, just a real conversation.
+        </p>
+        <div class="mt-10 flex flex-wrap justify-center gap-3">
+          <a href="/contact" data-cursor-hover class="!bg-white !text-violet-700 btn hover:!bg-white/90">
+            Start a project →
+          </a>
+          <a href={`mailto:${site.email}`} data-cursor-hover class="btn-ghost !border-white/30 !bg-white/10">{site.email}</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  // Gentle drift of blobs
+  gsap.to('.cta-blob-1', { x: 40, y: 30, duration: 10, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+  gsap.to('.cta-blob-2', { x: -30, y: -40, duration: 12, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+</script>

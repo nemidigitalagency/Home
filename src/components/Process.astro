@@ -1,0 +1,77 @@
+---
+const steps = [
+  { n: '01', title: 'Discovery call', desc: 'A 30-minute conversation to understand your goals, audience, and timeline. No sales pitch.' },
+  { n: '02', title: 'Strategy & scope', desc: 'We send a clear proposal, timeline, and fixed price within 48 hours. No surprises.' },
+  { n: '03', title: 'Design & prototype', desc: 'You see a live, clickable Figma — not static JPEGs. We iterate until you love it.' },
+  { n: '04', title: 'Build & test', desc: 'We ship the site in weekly demos. You review progress every Friday.' },
+  { n: '05', title: 'Launch & support', desc: 'We deploy, monitor, and fix anything that breaks for 30 days post-launch, free.' },
+];
+---
+<section id="process" class="section relative">
+  <div class="container-narrow">
+    <div class="max-w-3xl mb-20">
+      <div class="flex items-center gap-4 mb-5">
+        <span class="section-num">03 /</span>
+        <span class="eyebrow">Our Process</span>
+      </div>
+      <h2 class="heading">
+        Five steps. <span class="grad-text">No nonsense.</span>
+      </h2>
+      <p class="subheading">You always know what's happening, what's next, and when you'll see it. Most projects ship in 2–4 weeks.</p>
+    </div>
+
+    <div class="relative">
+      <!-- Vertical progress line -->
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 md:-translate-x-1/2">
+        <div class="progress-line absolute top-0 left-0 w-full h-0 bg-gradient-to-b from-fuchsia-500 via-violet-500 to-cyan-400 shadow-glow"></div>
+      </div>
+
+      <div class="space-y-16 md:space-y-24">
+        {steps.map((s, i) => (
+          <div class={`relative flex flex-col md:flex-row ${i % 2 === 1 ? 'md:flex-row-reverse' : ''} items-start gap-8 md:gap-16 process-step`}>
+            <!-- Dot -->
+            <div class="absolute left-4 md:left-1/2 -translate-x-1/2 top-1 z-10">
+              <div class="h-8 w-8 rounded-full border border-white/20 bg-[var(--bg)] flex items-center justify-center">
+                <span class="h-3 w-3 rounded-full bg-gradient-to-br from-fuchsia-500 to-violet-500 process-dot scale-0"></span>
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="pl-16 md:pl-0 md:w-1/2 md:px-8">
+              <div class="glass p-7 md:p-8 process-card opacity-0" data-side={i % 2 === 0 ? 'left' : 'right'}>
+                <p class="font-mono text-xs text-fuchsia-400 tracking-[0.3em] mb-3">STEP {s.n}</p>
+                <h3 class="text-2xl md:text-3xl font-display font-bold mb-3">{s.title}</h3>
+                <p class="text-white/60 leading-relaxed">{s.desc}</p>
+              </div>
+            </div>
+            <div class="hidden md:block md:w-1/2"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  // Animate progress line
+  gsap.to('.progress-line', {
+    height: '100%',
+    ease: 'none',
+    scrollTrigger: { trigger: '#process', start: 'top 30%', end: 'bottom 70%', scrub: true },
+  });
+
+  // Animate each dot + card as it enters
+  document.querySelectorAll('.process-step').forEach((step) => {
+    const dot = step.querySelector('.process-dot');
+    const card = step.querySelector('.process-card');
+    const side = card.dataset.side;
+    gsap.to(dot, { scale: 1, duration: 0.4, ease: 'back.out(2)', scrollTrigger: { trigger: step, start: 'top 70%' } });
+    gsap.fromTo(card,
+      { opacity: 0, x: side === 'left' ? -60 : 60, y: 30 },
+      { opacity: 1, x: 0, y: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: step, start: 'top 70%' } }
+    );
+  });
+</script>

@@ -1,53 +1,93 @@
 ---
 const services = [
   {
-    title: 'Web Design & Development',
-    desc: 'Fast, accessible, mobile-first websites built with modern stacks (Astro, React/Next, TanStack Start). SEO-optimized from day one.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="14" x="3" y="4" rx="2"/><line x1="2" x2="22" y1="20" y2="20"/></svg>`,
+    title: 'Web Design & Dev',
+    desc: 'Cinematic, fast-access websites — Astro, Next.js, TanStack. SEO-first, Lighthouse 98+.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M2 20h20"/></svg>`,
+    size: 'md:col-span-2 md:row-span-2',
+    grad: 'from-violet-600/40 via-fuchsia-600/20 to-transparent',
+    big: true,
   },
   {
-    title: 'E‑Commerce Stores',
-    desc: 'End-to-end jewellery, fashion and D2C stores with Supabase/Shopify backends, inventory, offers, banners & automated email workflows.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>`,
+    title: 'E-commerce',
+    desc: 'Jewellery, D2C and fashion stores with live pricing & automation.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+    size: '',
+    grad: 'from-amber-500/30 to-transparent',
   },
   {
-    title: 'Branding & Identity',
-    desc: 'Logos, color systems, typography and brand guidelines that make local businesses look as premium as national players.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>`,
+    title: 'Branding',
+    desc: 'Logos, systems and guidelines that feel premium.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>`,
+    size: '',
+    grad: 'from-pink-500/30 to-transparent',
   },
   {
     title: 'SEO & Growth',
-    desc: 'Technical SEO, local SEO for Bundelkhand/Jhansi/Kanpur, Google Business, content & conversion rate optimization.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 4 4 5-5"/></svg>`,
+    desc: 'Technical, local and content SEO that ranks and converts.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-5"/></svg>`,
+    size: 'md:col-span-2',
+    grad: 'from-cyan-500/30 to-transparent',
   },
   {
-    title: 'Internal Tools & Dashboards',
-    desc: 'Admin panels, CRM, product management, rate locks, email automation — like the Bundelkhand Jewellery admin we shipped.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>`,
+    title: 'Internal Tools',
+    desc: 'Admin dashboards, CRM, rate locks — like Bundelkhand Jewellery.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>`,
+    size: '',
+    grad: 'from-violet-500/30 to-transparent',
   },
   {
     title: 'Automation & Email',
-    desc: 'Resend-powered transactional email, CSV product mailers, GitHub Actions cron jobs, lead routing and form integrations.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 5L2 7"/></svg>`,
+    desc: 'Resend mailers, GitHub Actions cron, lead routing, CSV flows.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 5L2 7"/></svg>`,
+    size: '',
+    grad: 'from-emerald-400/30 to-transparent',
   },
 ];
 ---
-<section id="services" class="section">
+<section id="services" class="section relative">
   <div class="container-narrow">
-    <div class="max-w-2xl">
-      <span class="eyebrow">What we do</span>
-      <h2 class="heading mt-3">Services built for businesses that want to grow online.</h2>
-      <p class="subheading">
-        We act as your in-house digital team — design, engineering, SEO and automation under one roof. No account managers, no handoffs.
-      </p>
+    <div class="max-w-3xl mb-14">
+      <div class="flex items-center gap-4 mb-5">
+        <span class="section-num">02 /</span>
+        <span class="eyebrow">What we do</span>
+      </div>
+      <h2 class="heading">
+        Everything your brand needs to<br/>
+        <span class="grad-text">launch and scale</span> online.
+      </h2>
+      <p class="subheading">One senior team. Six core services. Zero agency bloat — you talk to the people building your product.</p>
     </div>
 
-    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {services.map(s => (
-        <div class="card">
-          <div class="h-11 w-11 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center" set:html={s.icon}></div>
-          <h3 class="mt-5 text-lg font-bold">{s.title}</h3>
-          <p class="mt-2 text-sm text-ink-500 leading-relaxed">{s.desc}</p>
+    <div class="grid grid-cols-1 md:grid-cols-4 auto-rows-[240px] gap-5 stagger-children">
+      {services.map((s, i) => (
+        <div class={`bento-item bg-gradient-to-br ${s.grad} ${s.size} p-6 md:p-8 group cursor-none`} data-cursor-hover>
+          <div class="relative z-10 h-full flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="h-12 w-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center text-white group-hover:bg-white group-hover:text-violet-600 transition-all duration-500 group-hover:rotate-[-8deg] group-hover:scale-110" set:html={s.icon}></div>
+              <span class="font-mono text-xs text-white/40">0{i+1}</span>
+            </div>
+
+            {s.big ? (
+              <>
+                <div class="mt-auto">
+                  <h3 class="text-3xl md:text-4xl font-display font-bold">{s.title}</h3>
+                  <p class="mt-3 text-white/60 text-base max-w-md leading-relaxed">{s.desc}</p>
+                </div>
+                <div class="absolute top-6 right-6 h-28 w-28 rounded-full bg-fuchsia-500/20 blur-2xl group-hover:bg-fuchsia-500/40 transition-all duration-700"></div>
+              </>
+            ) : (
+              <div class="mt-auto">
+                <h3 class="text-xl font-display font-bold">{s.title}</h3>
+                <p class="mt-2 text-white/60 text-sm leading-relaxed">{s.desc}</p>
+              </div>
+            )}
+          </div>
+
+          <!-- Hover glow -->
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+            <div class="absolute -inset-1 bg-gradient-to-br from-white/10 to-transparent rounded-3xl blur-xl"></div>
+          </div>
         </div>
       ))}
     </div>

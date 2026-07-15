@@ -3,17 +3,17 @@ import { site } from '../config';
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import CustomCursor from '../components/CustomCursor.astro';
 
 export interface Props {
   title?: string;
   description?: string;
   image?: string;
-  path?: string;
 }
 
 const {
   title = `${site.name} — ${site.tagline}`,
-  description = 'Nemi Digital Agency crafts conversion-focused websites, branding and growth systems for ambitious brands — e-commerce, SaaS and local businesses.',
+  description = 'Nemi Digital is a premium digital agency crafting cinematic websites, brands and growth systems for ambitious e-commerce, SaaS and local brands.',
   image = '/og-image.png',
 } = Astro.props;
 
@@ -26,6 +26,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#07070c" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <title>{title}</title>
@@ -40,12 +41,11 @@ const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, canonicalURL).toString()} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -64,11 +64,92 @@ const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
       sameAs: [site.github].filter(Boolean),
     })} />
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body>
+    <!-- Custom cursor (hidden on touch devices) -->
+    <CustomCursor />
+
     <Navbar />
-    <main class="flex-1">
+    <main>
       <slot />
     </main>
     <Footer />
+
+    <!-- Global JS: Lenis smooth scroll + GSAP ScrollTrigger + global reveals -->
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // --- Lenis smooth scroll ---
+      const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      // --- Generic reveal animations (any .reveal / .reveal-left etc.) ---
+      const revealDefaults = { opacity: 0, y: 40, duration: 1, ease: 'power3.out' };
+      document.querySelectorAll('.reveal').forEach((el) => {
+        gsap.fromTo(el, { opacity: 0, y: 40 }, {
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+        });
+      });
+      document.querySelectorAll('.reveal-left').forEach((el) => {
+        gsap.fromTo(el, { opacity: 0, x: -60 }, {
+          opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+        });
+      });
+      document.querySelectorAll('.reveal-right').forEach((el) => {
+        gsap.fromTo(el, { opacity: 0, x: 60 }, {
+          opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+        });
+      });
+      document.querySelectorAll('.reveal-scale').forEach((el) => {
+        gsap.fromTo(el, { opacity: 0, scale: 0.9 }, {
+          opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+        });
+      });
+
+      // --- Stagger child elements with .stagger-children parent ---
+      document.querySelectorAll('.stagger-children').forEach((parent) => {
+        const items = parent.querySelectorAll(':scope > *');
+        gsap.fromTo(items, { opacity: 0, y: 30 }, {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08,
+          scrollTrigger: { trigger: parent, start: 'top 85%' },
+        });
+      });
+
+      // --- Parallax data-speed on images/elements ---
+      document.querySelectorAll('[data-parallax]').forEach((el) => {
+        const speed = parseFloat(el.getAttribute('data-parallax') || '0.2');
+        gsap.to(el, {
+          yPercent: -speed * 100,
+          ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
+        });
+      });
+
+      // --- Navbar style on scroll ---
+      const nav = document.querySelector('header');
+      if (nav) {
+        ScrollTrigger.create({
+          start: 'top -50',
+          onUpdate: (self) => {
+            if (self.scroll() > 50) {
+              nav.classList.add('bg-[var(--bg)]/70','backdrop-blur-xl','border-white/10');
+            } else {
+              nav.classList.remove('bg-[var(--bg)]/70','backdrop-blur-xl','border-white/10');
+            }
+          },
+        });
+      }
+    </script>
   </body>
 </html>

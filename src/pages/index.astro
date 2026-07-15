@@ -3,17 +3,21 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Services from '../components/Services.astro';
 import Work from '../components/Work.astro';
+import Process from '../components/Process.astro';
 import About from '../components/About.astro';
 import Testimonials from '../components/Testimonials.astro';
 import CTA from '../components/CTA.astro';
+
+export const prerender = true;
 ---
 <Layout
-  title="Nemi Digital Agency — Web, Brand & Growth for Modern Businesses"
-  description="Nemi Digital Agency crafts conversion-focused websites, branding and growth systems for ambitious brands — e-commerce, SaaS and local businesses."
+  title="Nemi Digital — Cinematic websites, brands & growth"
+  description="Nemi Digital is a boutique digital agency crafting fast, cinematic websites, brands and growth systems for ambitious e-commerce, SaaS and local brands in Bundelkhand and beyond."
 >
   <Hero />
-  <Services />
   <Work />
+  <Services />
+  <Process />
   <About />
   <Testimonials />
   <CTA />

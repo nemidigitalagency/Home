@@ -2,50 +2,80 @@
 import { site } from '../config';
 const year = new Date().getFullYear();
 ---
-<footer class="border-t border-ink-100 bg-ink-50/60 mt-16">
-  <div class="container-narrow py-14 grid gap-10 md:grid-cols-4">
-    <div class="md:col-span-2">
-      <a href="/" class="flex items-center gap-2 font-display font-extrabold text-lg">
-        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">N</span>
-        <span>Nemi <span class="text-brand-600">Digital</span></span>
-      </a>
-      <p class="mt-4 text-ink-500 max-w-sm">
-        A digital agency based in Bundelkhand, building fast, modern websites and growth systems for
-        ambitious brands — from local jewellers to SaaS and e-commerce.
-      </p>
-      <p class="mt-4 text-sm text-ink-500">
-        Email: <a class="hover:text-brand-600" href={`mailto:${site.email}`}>{site.email}</a>
-      </p>
-      {site.whatsapp && (
-        <p class="mt-1 text-sm text-ink-500">
-          WhatsApp: <a class="hover:text-brand-600" href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`}>{site.whatsapp}</a>
-        </p>
-      )}
-    </div>
+<footer class="relative border-t border-white/10 mt-32 pt-20 pb-10 overflow-hidden">
+  <div aria-hidden="true" class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-fuchsia-500/20 blur-3xl"></div>
 
-    <div>
-      <h4 class="text-sm font-semibold text-ink-900">Company</h4>
-      <ul class="mt-4 space-y-2 text-sm text-ink-500">
-        <li><a href="/#about" class="hover:text-brand-600">About</a></li>
-        <li><a href="/#services" class="hover:text-brand-600">Services</a></li>
-        <li><a href="/#work" class="hover:text-brand-600">Work</a></li>
-        <li><a href="/contact" class="hover:text-brand-600">Contact</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="text-sm font-semibold text-ink-900">Legal</h4>
-      <ul class="mt-4 space-y-2 text-sm text-ink-500">
-        <li><a href="/privacy" class="hover:text-brand-600">Privacy Policy</a></li>
-        <li><a href="/terms" class="hover:text-brand-600">Terms of Service</a></li>
-      </ul>
+  <!-- Huge kinetic wordmark -->
+  <div class="container-narrow mb-16">
+    <div class="overflow-hidden">
+      <p class="text-[clamp(3rem,15vw,15rem)] font-display font-extrabold tracking-[-0.05em] leading-[0.8] text-white/10 hover:text-white/20 transition-colors duration-500 select-none grad-text">
+        NEMI<span class="text-fuchsia-400">.</span>
+      </p>
     </div>
   </div>
 
-  <div class="border-t border-ink-100">
-    <div class="container-narrow py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-ink-500">
-      <p>© {year} {site.name}. All rights reserved.</p>
-      <p>Made with care in Bundelkhand, India.</p>
+  <div class="container-narrow grid gap-12 md:grid-cols-12">
+    <div class="md:col-span-5">
+      <a href="/" class="flex items-center gap-2.5" data-cursor-hover>
+        <span class="relative inline-flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden">
+          <span class="absolute inset-0 bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500"></span>
+          <span class="relative font-display font-extrabold text-white text-lg">N</span>
+        </span>
+        <div class="leading-none">
+          <p class="font-display font-bold text-white text-base">Nemi <span class="text-fuchsia-400">Digital</span></p>
+          <p class="text-[10px] uppercase tracking-[0.25em] text-white/40 font-mono mt-0.5">Web · Brand · Growth</p>
+        </div>
+      </a>
+      <p class="mt-5 text-white/50 text-sm max-w-sm leading-relaxed">
+        A boutique digital studio based in Bundelkhand, building cinematic websites and growth systems for ambitious brands.
+      </p>
+      <a href={`mailto:${site.email}`} class="mt-5 inline-block text-sm text-white hover:text-fuchsia-400 transition-colors" data-cursor-hover>{site.email}</a>
+      {site.whatsapp && (
+        <p class="mt-1 text-sm"><a href={`https://wa.me/${site.whatsapp.replace(/\D/g,'')}`} class="text-white/70 hover:text-fuchsia-400 transition" data-cursor-hover>WhatsApp: {site.whatsapp}</a></p>
+      )}
+    </div>
+
+    <div class="md:col-span-2">
+      <p class="text-xs font-mono uppercase tracking-[0.25em] text-white/40 mb-5">Navigate</p>
+      <ul class="space-y-3 text-sm">
+        <li><a href="/#work" class="text-white/70 hover:text-white transition" data-cursor-hover>Work</a></li>
+        <li><a href="/#services" class="text-white/70 hover:text-white transition" data-cursor-hover>Services</a></li>
+        <li><a href="/#process" class="text-white/70 hover:text-white transition" data-cursor-hover>Process</a></li>
+        <li><a href="/#about" class="text-white/70 hover:text-white transition" data-cursor-hover>About</a></li>
+        <li><a href="/contact" class="text-white/70 hover:text-white transition" data-cursor-hover>Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-2">
+      <p class="text-xs font-mono uppercase tracking-[0.25em] text-white/40 mb-5">Social</p>
+      <ul class="space-y-3 text-sm">
+        {site.github && <li><a href={site.github} target="_blank" rel="noopener noreferrer" class="text-white/70 hover:text-white transition" data-cursor-hover>GitHub ↗</a></li>}
+        <li><a href="#" class="text-white/70 hover:text-white transition" data-cursor-hover>Instagram ↗</a></li>
+        <li><a href="#" class="text-white/70 hover:text-white transition" data-cursor-hover>LinkedIn ↗</a></li>
+        <li><a href="#" class="text-white/70 hover:text-white transition" data-cursor-hover>WhatsApp ↗</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-3">
+      <p class="text-xs font-mono uppercase tracking-[0.25em] text-white/40 mb-5">Newsletter</p>
+      <p class="text-sm text-white/60 mb-4">Occasional emails about shipping web products. No spam.</p>
+      <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="flex gap-2">
+        <input type="hidden" name="form-name" value="newsletter" />
+        <p class="hidden"><label>Don't fill: <input name="bot-field" /></label></p>
+        <input type="email" name="email" required placeholder="you@company.com" class="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-sm placeholder:text-white/30 focus:border-fuchsia-400 focus:outline-none transition" />
+        <button type="submit" class="h-10 w-10 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white hover:scale-110 transition" data-cursor-hover>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container-narrow mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/40 font-mono">
+    <p>© {year} {site.name}. All rights reserved.</p>
+    <div class="flex items-center gap-6">
+      <a href="/privacy" class="hover:text-white transition" data-cursor-hover>Privacy</a>
+      <a href="/terms" class="hover:text-white transition" data-cursor-hover>Terms</a>
+      <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse"></span> All systems operational</span>
     </div>
   </div>
 </footer>

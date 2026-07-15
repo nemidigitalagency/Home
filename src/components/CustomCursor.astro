@@ -1,0 +1,41 @@
+---
+// Custom follow-cursor (dot + ring) with GSAP, only on devices with fine pointers.
+---
+<script>
+  import { gsap } from 'gsap';
+
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.body.classList.add('has-custom-cursor');
+
+    const dot = document.createElement('div');
+    const ring = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const dotPos = { ...pos };
+    const ringPos = { ...pos };
+
+    window.addEventListener('mousemove', (e) => { pos.x = e.clientX; pos.y = e.clientY; });
+
+    gsap.ticker.add(() => {
+      dotPos.x += (pos.x - dotPos.x) * 0.6;
+      dotPos.y += (pos.y - dotPos.y) * 0.6;
+      ringPos.x += (pos.x - ringPos.x) * 0.15;
+      ringPos.y += (pos.y - ringPos.y) * 0.15;
+      gsap.set(dot, { x: dotPos.x, y: dotPos.y });
+      gsap.set(ring, { x: ringPos.x, y: ringPos.y });
+    });
+
+    // Hover states on buttons, links, cards
+    const hoverables = 'a, button, .project-card, .bento-item, [data-cursor-hover]';
+    document.addEventListener('mouseover', (e) => {
+      if ((e.target as Element).closest(hoverables)) ring.classList.add('is-hover');
+    });
+    document.addEventListener('mouseout', (e) => {
+      if ((e.target as Element).closest(hoverables)) ring.classList.remove('is-hover');
+    });
+  }
+</script>

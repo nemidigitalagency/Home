@@ -1,47 +1,78 @@
 ---
-const stats = [
-  { num: '40+', label: 'Happy clients' },
-  { num: '3 yrs', label: 'Shipping together' },
-  { num: '98+', label: 'Avg PageSpeed' },
-  { num: '14d', label: 'Avg launch time' },
-];
 ---
-<section id="about" class="section">
-  <div class="container-narrow grid gap-12 lg:grid-cols-2 lg:items-center">
-    <div>
-      <span class="eyebrow">About Nemi</span>
-      <h2 class="heading mt-3">A small, senior team — no agency theatre.</h2>
-      <p class="mt-5 text-ink-500 leading-relaxed">
-        Nemi Digital is a boutique agency founded in Bundelkhand by engineers who got tired of watching
-        local businesses get sold bloated, slow, overpriced websites by big-city agencies.
+<section id="about" class="section relative overflow-hidden">
+  <div aria-hidden="true" class="absolute inset-0 -z-10">
+    <div class="blob h-[500px] w-[500px] bg-violet-600/20" style="top:10%;left:-10%"></div>
+  </div>
+
+  <div class="container-narrow grid gap-16 lg:grid-cols-12 items-start">
+    <div class="lg:col-span-5 lg:sticky lg:top-32">
+      <div class="flex items-center gap-4 mb-5">
+        <span class="section-num">04 /</span>
+        <span class="eyebrow">About Nemi</span>
+      </div>
+      <h2 class="heading">
+        A small, <span class="grad-text">senior</span> team — no agency theatre.
+      </h2>
+      <p class="subheading">
+        Nemi Digital was founded in Bundelkhand by engineers who got tired of watching local
+        businesses get sold bloated, slow, overpriced websites by big-city agencies.
       </p>
-      <p class="mt-4 text-ink-500 leading-relaxed">
-        We design and build everything ourselves — no outsourcing, no junior handoffs. You work directly
-        with the people writing the code and pushing pixels. We reply on WhatsApp. We ship in weeks, not quarters.
+      <p class="mt-5 text-white/60 leading-relaxed max-w-xl">
+        We design and build everything ourselves — no outsourcing, no junior handoffs. You talk
+        directly to the person writing the code and pushing pixels. We reply on WhatsApp.
+        We ship in weeks, not quarters.
       </p>
 
-      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
-        {stats.map(s => (
-          <div>
-            <p class="text-3xl font-extrabold text-ink-900 font-display">{s.num}</p>
-            <p class="mt-1 text-xs text-ink-500 uppercase tracking-wider">{s.label}</p>
-          </div>
-        ))}
-      </div>
+      <a href="/contact" data-cursor-hover class="btn-primary mt-8 inline-flex">
+        Work with us
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
     </div>
 
-    <div class="relative">
+    <div class="lg:col-span-7 space-y-4">
+      <!-- Big kinetic quote card -->
+      <div class="glass p-8 md:p-12 reveal-scale">
+        <p class="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-[1.05]">
+          "<span class="grad-text">Beautiful</span> is good.
+          <span class="grad-text">Fast</span> is better.
+          <span class="grad-text">Both</span> is what we ship."
+        </p>
+        <p class="mt-6 text-white/50 text-sm font-mono">— Nemi manifesto</p>
+      </div>
+
+      <!-- 2x2 stat grid -->
       <div class="grid grid-cols-2 gap-4">
-        <div class="space-y-4">
-          <div class="h-40 rounded-2xl bg-gradient-to-br from-brand-100 to-brand-300"></div>
-          <div class="h-60 rounded-2xl bg-gradient-to-br from-accent-100 to-accent-300"></div>
+        <div class="glass p-6 reveal" data-cursor-hover>
+          <p class="text-5xl md:text-6xl font-display font-bold stat-num" data-target="3">0</p>
+          <p class="mt-3 text-xs text-white/40 uppercase tracking-[0.2em] font-mono">Years shipping</p>
         </div>
-        <div class="space-y-4 pt-8">
-          <div class="h-60 rounded-2xl bg-gradient-to-br from-ink-100 to-ink-300"></div>
-          <div class="h-40 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-300"></div>
+        <div class="glass p-6 reveal" data-cursor-hover>
+          <p class="text-5xl md:text-6xl font-display font-bold stat-num" data-target="40">0</p>
+          <p class="mt-3 text-xs text-white/40 uppercase tracking-[0.2em] font-mono">Happy clients</p>
+        </div>
+        <div class="glass p-6 reveal" data-cursor-hover>
+          <p class="text-5xl md:text-6xl font-display font-bold stat-num" data-target="14">0</p>
+          <p class="mt-3 text-xs text-white/40 uppercase tracking-[0.2em] font-mono">Days avg launch</p>
+        </div>
+        <div class="glass p-6 reveal" data-cursor-hover>
+          <p class="text-5xl md:text-6xl font-display font-bold stat-num" data-target="98">0</p>
+          <p class="mt-3 text-xs text-white/40 uppercase tracking-[0.2em] font-mono">Avg PageSpeed</p>
         </div>
       </div>
-      <div class="absolute inset-0 rounded-2xl ring-1 ring-ink-200 pointer-events-none"></div>
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const target = parseInt(el.dataset.target || '0', 10);
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target, duration: 2, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 85%' },
+      onUpdate: () => { el.textContent = Math.round(obj.val); },
+    });
+  });
+</script>

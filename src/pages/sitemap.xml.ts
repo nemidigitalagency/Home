@@ -14,8 +14,9 @@ const pages = [
 
 const origin = site.url.replace(/\/$/, '');
 
-// Prerender at build time → outputs static /sitemap.xml (no runtime function needed).
+// Prerender at build time → outputs static /sitemap.xml
 export const prerender = true;
+// (server mode requires explicit prerender flag)
 
 export const GET: APIRoute = () => {
   const body = `<?xml version="1.0" encoding="UTF-8"?>
