@@ -1,0 +1,47 @@
+---
+const stats = [
+  { num: '40+', label: 'Happy clients' },
+  { num: '3 yrs', label: 'Shipping together' },
+  { num: '98+', label: 'Avg PageSpeed' },
+  { num: '14d', label: 'Avg launch time' },
+];
+---
+<section id="about" class="section">
+  <div class="container-narrow grid gap-12 lg:grid-cols-2 lg:items-center">
+    <div>
+      <span class="eyebrow">About Nemi</span>
+      <h2 class="heading mt-3">A small, senior team — no agency theatre.</h2>
+      <p class="mt-5 text-ink-500 leading-relaxed">
+        Nemi Digital is a boutique agency founded in Bundelkhand by engineers who got tired of watching
+        local businesses get sold bloated, slow, overpriced websites by big-city agencies.
+      </p>
+      <p class="mt-4 text-ink-500 leading-relaxed">
+        We design and build everything ourselves — no outsourcing, no junior handoffs. You work directly
+        with the people writing the code and pushing pixels. We reply on WhatsApp. We ship in weeks, not quarters.
+      </p>
+
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+        {stats.map(s => (
+          <div>
+            <p class="text-3xl font-extrabold text-ink-900 font-display">{s.num}</p>
+            <p class="mt-1 text-xs text-ink-500 uppercase tracking-wider">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-4">
+          <div class="h-40 rounded-2xl bg-gradient-to-br from-brand-100 to-brand-300"></div>
+          <div class="h-60 rounded-2xl bg-gradient-to-br from-accent-100 to-accent-300"></div>
+        </div>
+        <div class="space-y-4 pt-8">
+          <div class="h-60 rounded-2xl bg-gradient-to-br from-ink-100 to-ink-300"></div>
+          <div class="h-40 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-300"></div>
+        </div>
+      </div>
+      <div class="absolute inset-0 rounded-2xl ring-1 ring-ink-200 pointer-events-none"></div>
+    </div>
+  </div>
+</section>

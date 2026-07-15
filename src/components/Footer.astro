@@ -1,0 +1,51 @@
+---
+import { site } from '../config';
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-ink-100 bg-ink-50/60 mt-16">
+  <div class="container-narrow py-14 grid gap-10 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <a href="/" class="flex items-center gap-2 font-display font-extrabold text-lg">
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">N</span>
+        <span>Nemi <span class="text-brand-600">Digital</span></span>
+      </a>
+      <p class="mt-4 text-ink-500 max-w-sm">
+        A digital agency based in Bundelkhand, building fast, modern websites and growth systems for
+        ambitious brands — from local jewellers to SaaS and e-commerce.
+      </p>
+      <p class="mt-4 text-sm text-ink-500">
+        Email: <a class="hover:text-brand-600" href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+      {site.whatsapp && (
+        <p class="mt-1 text-sm text-ink-500">
+          WhatsApp: <a class="hover:text-brand-600" href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`}>{site.whatsapp}</a>
+        </p>
+      )}
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold text-ink-900">Company</h4>
+      <ul class="mt-4 space-y-2 text-sm text-ink-500">
+        <li><a href="/#about" class="hover:text-brand-600">About</a></li>
+        <li><a href="/#services" class="hover:text-brand-600">Services</a></li>
+        <li><a href="/#work" class="hover:text-brand-600">Work</a></li>
+        <li><a href="/contact" class="hover:text-brand-600">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold text-ink-900">Legal</h4>
+      <ul class="mt-4 space-y-2 text-sm text-ink-500">
+        <li><a href="/privacy" class="hover:text-brand-600">Privacy Policy</a></li>
+        <li><a href="/terms" class="hover:text-brand-600">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-ink-100">
+    <div class="container-narrow py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-ink-500">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p>Made with care in Bundelkhand, India.</p>
+    </div>
+  </div>
+</footer>

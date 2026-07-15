@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap is at /sitemap-index.xml? We use a dynamic sitemap at /sitemap.xml.
+Sitemap: /sitemap.xml

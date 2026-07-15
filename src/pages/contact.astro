@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../config';
+---
+<Layout
+  title={`Contact — ${site.name}`}
+  description="Tell us about your project. We reply within 24 hours."
+>
+  <section class="section">
+    <div class="container-narrow grid gap-12 lg:grid-cols-5 lg:gap-16">
+      <div class="lg:col-span-2">
+        <span class="eyebrow">Contact</span>
+        <h1 class="heading mt-3">Let's talk about your project.</h1>
+        <p class="subheading">
+          Fill out the form or drop us an email. We read every message personally and reply within 24 hours (usually faster on WhatsApp).
+        </p>
+
+        <div class="mt-10 space-y-5">
+          <div class="flex items-start gap-4">
+            <div class="h-10 w-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink-900">Email</p>
+              <a href={`mailto:${site.email}`} class="text-ink-500 text-sm hover:text-brand-600">{site.email}</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="h-10 w-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink-900">Based in</p>
+              <p class="text-ink-500 text-sm">{site.location}<br/>Serving clients worldwide.</p>
+            </div>
+          </div>
+
+          {site.whatsapp && (
+            <div class="flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-ink-900">WhatsApp</p>
+                <a href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`} class="text-ink-500 text-sm hover:text-brand-600">{site.whatsapp}</a>
+              </div>
+            </div>
+          )}
+
+          {site.github && (
+            <div class="flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.38-3.88-1.38-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.97.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.18a11 11 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.18-1.18 3.18-1.18.63 1.6.23 2.78.11 3.07.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A10.53 10.53 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-ink-900">GitHub</p>
+                <a href={site.github} target="_blank" rel="noopener noreferrer" class="text-ink-500 text-sm hover:text-brand-600 break-all">{site.github.replace('https://', '')}</a>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div class="mt-10 rounded-xl border border-ink-200 bg-ink-50 p-5 text-sm text-ink-700">
+          <p class="font-semibold text-ink-900">⏱ No domain yet?</p>
+          <p class="mt-1 text-ink-500 text-[13px]">
+            That's fine. The site will live on a free Netlify subdomain (like <code class="bg-white px-1 rounded">nemi-digital.netlify.app</code>) and form submissions land in your Netlify dashboard + get emailed to you automatically. We'll wire up Resend later when you buy a domain.
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <!--
+          The form posts to /api/contact (which tries Resend if configured, otherwise just redirects).
+          data-netlify="true" + the hidden form in public/__forms.html ensure Netlify Forms captures
+          every submission regardless of what the server endpoint does — bulletproof with zero config.
+        -->
+        <form
+          name="contact"
+          method="POST"
+          action="/api/contact"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="card space-y-5"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="block text-sm font-medium text-ink-900">Your name</label>
+              <input required id="name" name="name" type="text" class="mt-2 w-full rounded-lg border border-ink-200 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition" placeholder="Jane Doe" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-ink-900">Email</label>
+              <input required id="email" name="email" type="email" class="mt-2 w-full rounded-lg border border-ink-200 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition" placeholder="you@company.com" />
+            </div>
+          </div>
+
+          <div>
+            <label for="company" class="block text-sm font-medium text-ink-900">Company / Brand <span class="text-ink-500 font-normal">(optional)</span></label>
+            <input id="company" name="company" type="text" class="mt-2 w-full rounded-lg border border-ink-200 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition" placeholder="Acme Jewellers" />
+          </div>
+
+          <div>
+            <label for="budget" class="block text-sm font-medium text-ink-900">Estimated budget</label>
+            <select id="budget" name="budget" class="mt-2 w-full rounded-lg border border-ink-200 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition">
+              <option value="">Select a range...</option>
+              <option value="under-50k">Under ₹50,000</option>
+              <option value="50k-1l">₹50,000 – ₹1,00,000</option>
+              <option value="1l-3l">₹1,00,000 – ₹3,00,000</option>
+              <option value="3l+">Above ₹3,00,000</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-ink-900">Tell us about your project</label>
+            <textarea required id="message" name="message" rows="5" class="mt-2 w-full rounded-lg border border-ink-200 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition resize-none" placeholder="What are you building? What's the timeline?"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary w-full sm:w-auto">Send message →</button>
+          <p class="text-xs text-ink-500">By submitting, you agree to our <a href="/privacy" class="underline hover:text-brand-600">Privacy Policy</a>. We'll never share your details.</p>
+        </form>
+
+        <script>
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('success') === '1') {
+            const form = document.querySelector('form[name="contact"]');
+            if (form) form.outerHTML = '<div class="card text-center py-14"><div class="mx-auto h-14 w-14 rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div><h3 class="text-xl font-bold text-ink-900">Message sent!</h3><p class="mt-2 text-ink-500">Thanks for reaching out — we\'ll get back to you within 24 hours.</p><a href="/" class="btn-ghost mt-6 inline-flex">Back to home</a></div>';
+          }
+        </script>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,32 @@
+---
+const links = [
+  { href: '/#services', label: 'Services' },
+  { href: '/#work', label: 'Work' },
+  { href: '/#about', label: 'About' },
+  { href: '/#testimonials', label: 'Testimonials' },
+  { href: '/contact', label: 'Contact' },
+];
+const pathname = Astro.url.pathname;
+---
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-ink-100">
+  <nav class="container-narrow flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-2 font-display font-extrabold text-lg">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">N</span>
+      <span>Nemi <span class="text-brand-600">Digital</span></span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-700">
+      {links.map(l => (
+        <li>
+          <a href={l.href} class:list={['hover:text-brand-600 transition',
+            pathname === l.href && 'text-brand-700']}>{l.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="/contact" class="btn-primary hidden sm:inline-flex">Start a project →</a>
+
+    <!-- Mobile menu toggle (no JS needed for simple anchor nav; we'll just leave a CTA) -->
+    <a href="/contact" class="btn-primary sm:hidden">Start</a>
+  </nav>
+</header>

@@ -1,0 +1,18 @@
+<!--
+  Netlify Forms build-time detection form.
+  This file is static HTML so Netlify's build bot registers the "contact" form.
+  Not linked from anywhere; the real form lives at /contact and posts to /api/contact (or Netlify).
+-->
+<!doctype html>
+<html>
+  <body>
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="text" name="budget" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>

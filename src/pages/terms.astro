@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../config';
+---
+<Layout
+  title={`Terms of Service — ${site.name}`}
+  description={`Terms of Service for ${site.name}'s website and engagement process.`}
+>
+  <section class="py-16">
+    <article class="container-narrow max-w-3xl">
+      <span class="eyebrow">Legal</span>
+      <h1 class="heading mt-3">Terms of Service</h1>
+      <p class="text-sm text-ink-500">Last updated: July 2026</p>
+
+      <div class="mt-8 space-y-6 text-ink-700 leading-relaxed text-[15px]">
+        <h2 class="text-xl font-bold mt-8">1. Acceptance</h2>
+        <p>By accessing this website (the "Site"), you agree to be bound by these Terms. If you don't agree, please do not use the Site.</p>
+
+        <h2 class="text-xl font-bold mt-8">2. Use of the Site</h2>
+        <p>You may use the Site for lawful purposes only. You agree not to attempt to gain unauthorized access, interfere with security, or use the Site to send unsolicited messages.</p>
+
+        <h2 class="text-xl font-bold mt-8">3. No client relationship</h2>
+        <p>Submitting the contact form does not create a client/agency relationship. A formal engagement begins only after both parties sign a statement of work (SOW) or written agreement.</p>
+
+        <h2 class="text-xl font-bold mt-8">4. Intellectual property</h2>
+        <p>All content on the Site — copy, design, code, logos — is owned by Nemi Digital Agency or our clients and may not be reused without permission. Client case studies are shown with permission.</p>
+
+        <h2 class="text-xl font-bold mt-8">5. Limitation of liability</h2>
+        <p>The Site is provided "as is". We do not guarantee uninterrupted availability, and we are not liable for losses arising from use of or inability to use the Site.</p>
+
+        <h2 class="text-xl font-bold mt-8">6. External links</h2>
+        <p>We may link to third-party sites (client sites, tools). We are not responsible for their content or practices.</p>
+
+        <h2 class="text-xl font-bold mt-8">7. Changes</h2>
+        <p>We may update these Terms from time to time. The current version will always be posted on this page with an updated "Last updated" date.</p>
+
+        <h2 class="text-xl font-bold mt-8">8. Governing law</h2>
+        <p>These Terms are governed by the laws of India. Any disputes will be subject to the exclusive jurisdiction of the courts in Uttar Pradesh.</p>
+
+        <h2 class="text-xl font-bold mt-8">9. Contact</h2>
+        <p>Questions? Email us at <a href={`mailto:${site.email}`} class="text-brand-600 hover:underline">{site.email}</a>.</p>
+      </div>
+    </article>
+  </section>
+</Layout>

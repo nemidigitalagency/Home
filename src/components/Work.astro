@@ -1,0 +1,70 @@
+---
+const projects = [
+  {
+    name: 'Bundelkhand Jewellery',
+    tag: 'E-commerce · Supabase · TanStack Start',
+    desc: 'Full jewellery e-commerce platform with live metal rate sync, admin controls, daily CSV email to dealers, auto image optimization and Netlify deployment.',
+    href: 'https://bundelkhandjwelery.netlify.app',
+    gradient: 'from-amber-200 via-yellow-100 to-rose-100',
+    accent: 'bg-amber-500',
+  },
+  {
+    name: 'Local Business Starter',
+    tag: 'Astro · Tailwind · SEO',
+    desc: 'High-converting single-page template for restaurants, clinics and retail shops — Lighthouse 98+, Google Business integration, WhatsApp CTA.',
+    href: '#',
+    gradient: 'from-sky-200 via-blue-100 to-indigo-100',
+    accent: 'bg-sky-500',
+  },
+  {
+    name: 'SaaS Landing Kit',
+    tag: 'Next.js · Resend · Analytics',
+    desc: 'Launch-ready marketing site with waitlist, pricing, testimonials and legal pages — ship a product in a weekend, not a month.',
+    href: '#',
+    gradient: 'from-violet-200 via-purple-100 to-fuchsia-100',
+    accent: 'bg-violet-500',
+  },
+  {
+    name: 'Dealer CRM & Mailers',
+    tag: 'GitHub Actions · Resend · Supabase',
+    desc: 'Automated daily product catalog emails to hundreds of dealers with open tracking, rate-locks and admin audit trail.',
+    href: '#',
+    gradient: 'from-emerald-200 via-green-100 to-lime-100',
+    accent: 'bg-emerald-500',
+  },
+];
+---
+<section id="work" class="section bg-ink-50/60 border-y border-ink-100">
+  <div class="container-narrow">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div class="max-w-2xl">
+        <span class="eyebrow">Selected work</span>
+        <h2 class="heading mt-3">Ships that moved the needle.</h2>
+        <p class="subheading">A glimpse of the projects we've launched recently. Want more? Reach out for the full portfolio.</p>
+      </div>
+      <a href="/contact" class="btn-ghost w-max">Discuss your project →</a>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      {projects.map(p => (
+        <a href={p.href} target={p.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" class="group rounded-2xl border border-ink-200 bg-white overflow-hidden shadow-card hover:shadow-soft transition hover:-translate-y-0.5">
+          <div class={`h-52 bg-gradient-to-br ${p.gradient} relative`}>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="bg-white/70 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white shadow-sm">
+                <p class="font-display font-extrabold text-xl text-ink-900">{p.name}</p>
+              </div>
+            </div>
+            <span class={`absolute top-4 left-4 ${p.accent} text-white text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded-full`}>Case study</span>
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold text-brand-600 uppercase tracking-wider">{p.tag}</p>
+            <p class="mt-2 text-ink-700 text-sm leading-relaxed">{p.desc}</p>
+            <p class="mt-4 text-sm font-semibold text-ink-900 group-hover:text-brand-600 transition inline-flex items-center gap-1">
+              View project <span class="transition group-hover:translate-x-1">→</span>
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

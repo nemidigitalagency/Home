@@ -1,0 +1,55 @@
+---
+const services = [
+  {
+    title: 'Web Design & Development',
+    desc: 'Fast, accessible, mobile-first websites built with modern stacks (Astro, React/Next, TanStack Start). SEO-optimized from day one.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="14" x="3" y="4" rx="2"/><line x1="2" x2="22" y1="20" y2="20"/></svg>`,
+  },
+  {
+    title: 'E‑Commerce Stores',
+    desc: 'End-to-end jewellery, fashion and D2C stores with Supabase/Shopify backends, inventory, offers, banners & automated email workflows.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>`,
+  },
+  {
+    title: 'Branding & Identity',
+    desc: 'Logos, color systems, typography and brand guidelines that make local businesses look as premium as national players.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>`,
+  },
+  {
+    title: 'SEO & Growth',
+    desc: 'Technical SEO, local SEO for Bundelkhand/Jhansi/Kanpur, Google Business, content & conversion rate optimization.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 4 4 5-5"/></svg>`,
+  },
+  {
+    title: 'Internal Tools & Dashboards',
+    desc: 'Admin panels, CRM, product management, rate locks, email automation — like the Bundelkhand Jewellery admin we shipped.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>`,
+  },
+  {
+    title: 'Automation & Email',
+    desc: 'Resend-powered transactional email, CSV product mailers, GitHub Actions cron jobs, lead routing and form integrations.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 5L2 7"/></svg>`,
+  },
+];
+---
+<section id="services" class="section">
+  <div class="container-narrow">
+    <div class="max-w-2xl">
+      <span class="eyebrow">What we do</span>
+      <h2 class="heading mt-3">Services built for businesses that want to grow online.</h2>
+      <p class="subheading">
+        We act as your in-house digital team — design, engineering, SEO and automation under one roof. No account managers, no handoffs.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map(s => (
+        <div class="card">
+          <div class="h-11 w-11 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center" set:html={s.icon}></div>
+          <h3 class="mt-5 text-lg font-bold">{s.title}</h3>
+          <p class="mt-2 text-sm text-ink-500 leading-relaxed">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

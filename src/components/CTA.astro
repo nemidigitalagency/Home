@@ -1,0 +1,19 @@
+---
+import { site } from '../config';
+---
+<section class="section">
+  <div class="container-narrow">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-brand-700 to-purple-800 px-6 sm:px-14 py-16 sm:py-20 text-white text-center shadow-soft">
+      <div aria-hidden="true" class="absolute inset-0 -z-0 opacity-20">
+        <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/30 blur-3xl"></div>
+        <div class="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-accent-500/40 blur-3xl"></div>
+      </div>
+      <h2 class="relative text-3xl sm:text-5xl font-extrabold font-display leading-tight">Have a project in mind? Let's build it.</h2>
+      <p class="relative mt-5 text-brand-100 max-w-xl mx-auto">Tell us what you're building. We reply within 24 hours with next steps — no sales pitch, just a real conversation.</p>
+      <div class="relative mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 rounded-full bg-white text-brand-700 px-6 py-3 text-sm font-semibold hover:bg-brand-50 transition shadow-lg">Start a project →</a>
+        <a href={`mailto:${site.email}`} class="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 border border-white/30 text-white px-6 py-3 text-sm font-semibold hover:bg-white/20 transition">{site.email}</a>
+      </div>
+    </div>
+  </div>
+</section>
